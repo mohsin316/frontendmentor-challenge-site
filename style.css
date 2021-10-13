@@ -145,7 +145,7 @@ header{
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-    padding:4rem;
+    padding:3rem;
     border: 4.5px solid var(--font-clr);
     transition: border var(--transition-med) ease-in-out;
 
@@ -159,7 +159,7 @@ header{
 h1{
     text-transform: uppercase;
     line-height: 1.35rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     transition: background-color var(--transition-med) ease-in-out,
             color var(--transition-med) ease-in-out;
                 
@@ -703,7 +703,23 @@ body .closed h2{
     display: none;
 }
 
+@media (min-width: 350px ) {
+    .profile{
+        padding: 3.5rem;
+    }
+    h1{
+        font-size: 1.2rem;
+    }
+}
 
+@media (min-width: 375px ) {
+    .profile{
+        padding: 4rem;
+    }
+    h1{
+        font-size: 1.25rem;
+    }
+}
 
 @media (min-width:420px){
     h1{
