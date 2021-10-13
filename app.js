@@ -63,21 +63,20 @@ window.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', e => {
     const isDropDownButton = e.target.matches('button') 
     if(isDropDownButton) {
-        dropDownMenu.classList.toggle('show')
+        dropDownMenu.classList.toggle('flex')
+        setTimeout(() => {
+            dropDownMenu.classList.toggle('show')
+        }, 1);
         button.classList.toggle('rotate')
         
     }else{
         dropDownMenu.classList.remove('show')
+        setTimeout(() => {
+            dropDownMenu.classList.remove('flex')
+        }, 300);
         button.classList.remove('rotate')
     }
 
-    if(dropDownMenu.classList.contains('show')){
-        dropDownMenu.classList.remove('none')
-    }else{
-        setTimeout(() => {
-            dropDownMenu.classList.add('none')
-        },300)
-    }
 })
 
 /*creating the sorting method when using the 'sort by' button*/
@@ -228,3 +227,13 @@ search.addEventListener('keyup', e=>{
     let word = search.search.value.toLowerCase().trim()
     filterFunc(word)
 })
+
+search.addEventListener('submit', e=>{
+    e.preventDefault()
+    let word = search.search.value.toLowerCase().trim()
+    filterFunc(word)
+})
+
+
+//fix sort
+//fix enter submit

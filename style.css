@@ -220,7 +220,7 @@ h1{
 }
 
 .dropdown-menu{
-    display: flex;
+    display: none;
     position: absolute;
     border-radius: 15px;
     flex-direction: column;
@@ -232,6 +232,8 @@ h1{
     opacity var(--transition-med) ease-in-out;
     z-index: 2000;
 }
+
+
 
 .dropdown-menu .options {
     transition: color var(--transition-med) ease-in-out,
@@ -701,6 +703,10 @@ body .closed h2{
 }
 .none{
     display: none;
+}
+
+.flex{
+    display: flex;
 }
 
 @media (min-width: 350px ) {
