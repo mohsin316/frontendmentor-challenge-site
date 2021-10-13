@@ -1,14 +1,19 @@
+/*getting variables*/
+
 const toggle = document.querySelector("input[type='checkbox']")
 const root = document.querySelector(':root')
 const text = document.querySelectorAll('.toggle-button p')
-const button = document.querySelector('button')
+const button = document.querySelector('.main-button')
 const dropDown= document.querySelector('.dropdown')
 const dropDownMenu= document.querySelector('.dropdown-menu')
-const newbie= document.querySelector('.newbie')
-const junior= document.querySelector('.junior')
+const strike = document.querySelectorAll('.strike')
+const containers= document.querySelectorAll('.container')
+const cards= document.querySelectorAll('.card')
 const options= document.querySelectorAll('.options')
+const titles= document.querySelectorAll('.title')
+const search = document.querySelector('.search-bar')
 
-//console.log(toggle)
+/*light and dark mode toggle*/
 
 const getTheme = () =>{
     let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' ;
@@ -59,24 +64,167 @@ document.addEventListener('click', e => {
     const isDropDownButton = e.target.matches('button') 
     if(isDropDownButton) {
         dropDownMenu.classList.toggle('show')
+        button.classList.toggle('rotate')
+        
     }else{
         dropDownMenu.classList.remove('show')
+        button.classList.remove('rotate')
+    }
+
+    if(dropDownMenu.classList.contains('show')){
+        dropDownMenu.classList.remove('none')
+    }else{
+        setTimeout(() => {
+            dropDownMenu.classList.add('none')
+        },300)
     }
 })
 
+/*creating the sorting method when using the 'sort by' button*/
+
+
 options.forEach(option => {
     option.addEventListener('click', e => {
-        if(option.value.toLowerCase() === 'newbie'){
-            newbie.classList.remove('hide')
-            newbie.classList.remove('none')
-            junior.classList.add('hide')
-            junior.classList.add('none')
+        let word = search.search.value.toLowerCase().trim()
+        switch(option.value){
+            case 'all':
+                button.textContent = 'All'
+                containers.forEach(container => {
+                    container.classList.add('hide')
+                    setTimeout(() => {
+                        container.classList.remove('none')
+                    },250)
+                    setTimeout(() => {
+                        container.classList.remove('hide')
+                        filterFunc(word)
+                    },300)
+                })
+                break
+            case 'newbie':
+                button.textContent = 'Newbie'
+                containers.forEach(container => {
+                    if (container.classList.contains('newbie')){
+                        container.classList.add('hide')
+                        setTimeout(() => {
+                            container.classList.remove('none')
+                        },250)
+                        setTimeout(() => {
+                            container.classList.remove('hide')
+                            filterFunc(word)
+                        },300)
+                    }else{
+                        container.classList.add('hide')
+                        setTimeout(() => {
+                            container.classList.add('none')
+                            filterFunc(word)
+                        },300)
+                    }
+                })
+                break
+            case 'junior':
+                button.textContent = 'Junior'
+                containers.forEach(container => {
+                    if (container.classList.contains('junior')){
+                        container.classList.add('hide')
+                        setTimeout(() => {
+                            container.classList.remove('none')
+                        },250)
+                        setTimeout(() => {
+                            container.classList.remove('hide')
+                            filterFunc(word)
+                        },300)
+                    }else{
+                        container.classList.add('hide')
+                        setTimeout(() => {
+                            container.classList.add('none')
+                            filterFunc(word)
+                        },300)
+                    }
+                })
+                break
+            case 'intermediate':
+                break
+            case 'advanced':
+                break
+            case 'guru':
+                break
 
-        }else if(option.value.toLowerCase() === 'junior'){
-            junior.classList.remove('hide')
-            junior.classList.remove('none')
-            newbie.classList.add('hide')
-            newbie.classList.add('none')
         }
     })
+})
+
+
+/*creating the searching input function when using the search input*/
+
+
+const filterFunc = word => {
+    const children = Array.from(titles);
+    const filter = children.filter( title => !title.textContent.toLowerCase().includes(word))
+    filter.forEach(card => card.parentElement.parentElement.classList.add('none'))
+
+    const unfilter = children.filter( title => title.textContent.toLowerCase().includes(word))
+    unfilter.forEach(card => card.parentElement.parentElement.classList.remove('none'))
+
+    containers.forEach(container => {
+
+        let cards = container.children[1].children;
+        const cardChildren = Array.from(cards);
+        
+        let result = cardChildren.every(e => e.classList.contains('none'));
+
+        if(button.textContent === 'Sort By'){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            }
+
+        }else if(button.textContent === 'All'){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            }
+
+        }else if(button.textContent === 'Newbie' && container.classList.contains('newbie')){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            }
+        }else if(button.textContent === 'Junior' && container.classList.contains('junior')){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            } 
+        }else if(button.textContent === 'Intermediate' && container.classList.contains('intermediate')){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            } 
+        }else if(button.textContent === 'Advanced' && container.classList.contains('advanced')){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            } 
+        }else if(button.textContent === 'Guru' && container.classList.contains('guru')){
+            if(result){
+                container.classList.add('none')
+            }else{
+                container.classList.remove('none')
+            } 
+        }else{
+            container.classList.add('none')
+        }
+
+    })
+}
+
+search.addEventListener('keyup', e=>{
+    e.preventDefault()
+    let word = search.search.value.toLowerCase().trim()
+    filterFunc(word)
 })

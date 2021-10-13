@@ -31,6 +31,7 @@
     --comingsoon-dark: hsla(125, 15%, 57%, .25);
 
     --transition-quick : 150ms;
+    --transition-med-quick : 200ms;
     --transition-med : 250ms;
     --transition-slow : 350ms;
     --transition-slows : 5s;
@@ -194,6 +195,8 @@ h1{
     color var(--transition-med) ease-in-out;
 }
 
+
+
 .main-button:focus{
     outline: 1px solid var(--font-clr2);
 }
@@ -208,7 +211,12 @@ h1{
     border-bottom: 15px solid var(--font-clr);
     right: 0;
     transform: translate(-70%, 40%) rotate(180deg);
-    transition: border-bottom var(--transition-med) ease-in-out;
+    transition: border-bottom var(--transition-med) ease-in-out,
+    transform var(--transition-med) ease-in-out;
+}
+
+.rotate::after{
+    transform: translate(-70%, 40%) rotate(0deg);
 }
 
 .dropdown-menu{
@@ -397,7 +405,7 @@ main{
     margin-top: 1rem;
     text-align: center;
     opacity: 1;
-    transition: opacity var(--transition-med) ease-in-out;
+    transition: opacity var(--transition-med-quick) ease-in-out;
 
 }
 
@@ -438,11 +446,10 @@ h2::after {
     margin-left: 9px;
 }
 
-.newbie .card:nth-of-type(1),
-.junior .card:nth-of-type(1){
-    margin-top: 2.5rem;
-
+.card-container{
+    padding-top: 1.5rem;
 }
+
 
 .card{
     background-color:var(--bg-secondary);
@@ -671,6 +678,15 @@ body .closed h2{
     transform: scale(1.1);
 }
 
+.card:focus-within{
+    transform: scale(1.1);
+}
+
+.card:focus-within .card-image-holder{
+    border: 5px solid var(--font-clr);
+    outline: none;
+}
+
 .hide{
     opacity:0;
 }
@@ -682,20 +698,19 @@ body .closed h2{
     display: none;
 }
 
+
+
 @media (min-width:420px){
     h1{
         font-size: 1.35rem;
         max-width: fit-content;
     }
 
-    .junior .card:nth-child(2) .card-image-holder{
-        background-size: 350px;
-    }
-
     .card-container{
         display: grid;
         grid-template-columns: repeat(auto-fit, 350px);
         place-content: center;
+        padding-top: 1.5rem;
     }
 
     .card{
@@ -833,11 +848,8 @@ body .closed h2{
         font-size: 1rem;
     }
 
-    .newbie .card:nth-of-type(1),
-    .newbie .card:nth-of-type(2),
-    .junior .card:nth-of-type(1),
-    .junior .card:nth-of-type(2){
-        margin-top: 2.5rem;
+    .card-container{
+        padding-top: 1.5rem;
     }
 
     footer{
@@ -880,16 +892,7 @@ body .closed h2{
         font-size: 2.5rem;
         max-width: 200px;
     }
-
-    .newbie .card:nth-of-type(1),
-    .newbie .card:nth-of-type(2),
-    .newbie .card:nth-of-type(3),
-    .junior .card:nth-of-type(1),
-    .junior .card:nth-of-type(2),
-    .junior .card:nth-of-type(3){
-        margin-top: 3.5rem;
-    }
-
+   
     footer{
         display: none;
     }
@@ -898,6 +901,7 @@ body .closed h2{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         place-content: center;
+        padding-top: 1.5rem;
     }
 
     .card{
@@ -1001,6 +1005,10 @@ body .closed h2{
     }
     
     .junior .card:nth-child(1) .card-image-holder{
+        background-size: 375px;
+        background-position: center;
+    }
+    .junior .card:nth-child(2) .card-image-holder{
         background-size: 375px;
         background-position: center;
     }
