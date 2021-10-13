@@ -678,6 +678,11 @@ body .closed h2{
     transform: scale(1.1);
 }
 
+.card:hover .card-image-holder{
+    border: 5px solid var(--font-clr);
+    outline: none;
+}
+
 .card:focus-within{
     transform: scale(1.1);
 }
