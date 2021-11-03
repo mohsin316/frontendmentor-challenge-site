@@ -1061,3 +1061,14 @@ body .closed h2{
     }
 
 }
+
+@media (min-width: 1650px){
+    body{
+        display: grid;
+        place-content: center;
+    }
+
+    header, .functionality, main {
+        min-width: 1700px;
+    }
+}
