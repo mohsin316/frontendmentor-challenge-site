@@ -589,6 +589,13 @@ h2::after {
     background-repeat: no-repeat;
     height: 187px;
 }
+.newbie .card:nth-child(10) .card-image-holder{
+    background-image: url('images/four-card-feature-section.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 187px;
+}
 
 .junior .card:nth-child(1) .card-image-holder{
     background-image: url('images/time-tracking.jpg');
