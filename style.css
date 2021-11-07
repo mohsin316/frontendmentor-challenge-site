@@ -596,6 +596,13 @@ h2::after {
     background-repeat: no-repeat;
     height: 187px;
 }
+.newbie .card:nth-child(11) .card-image-holder{
+    background-image: url('images/huddle-landing-page.jpg');
+    background-size: 300px;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 187px;
+}
 
 .junior .card:nth-child(1) .card-image-holder{
     background-image: url('images/time-tracking.jpg');
@@ -1058,6 +1065,10 @@ body .closed h2{
     
     .newbie .card:nth-child(7) .card-image-holder{
         background-size: 400px;
+        background-position: center;
+    }
+    .newbie .card:nth-child(11) .card-image-holder{
+        background-size: cover;
         background-position: center;
     }
     
