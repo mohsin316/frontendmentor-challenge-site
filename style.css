@@ -610,6 +610,13 @@ h2::after {
     background-repeat: no-repeat;
     height: 187px;
 }
+.newbie .card:nth-child(13) .card-image-holder{
+    background-image: url('images/Ping-coming-soon-page.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 187px;
+}
 
 .junior .card:nth-child(1) .card-image-holder{
     background-image: url('images/time-tracking.jpg');
